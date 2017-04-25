@@ -1,0 +1,15 @@
+---
+name: list_slb_servers
+runner_type: run-python
+description: lists servers which are registered in SLB
+enabled: true
+entry_point: list_slb_servers.py
+parameters:
+    api_version:
+        type: string
+        description: version number of aXAPI to request ACOS appliance
+        required: false
+        enum:
+          - v2.1
+          - v3.0
+        default: v3.0
