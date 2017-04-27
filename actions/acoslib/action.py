@@ -24,10 +24,17 @@ class BaseAction(Action):
         except KeyError as e:
             self.logger.error(e)
 
+    def get_object(self, base_obj, object_path):
+        obj = base_obj
+        for path in object_path.split('.'):
+            obj = getattr(obj, path)
+
+        return obj
+
     def _get_axapi_version(self, api_version):
-        if re.match(r'[vV][a-z-_]*3\.0$', str(api_version)):
+        if re.match(r'[vV]?[a-z-_]*3\.0$', str(api_version)):
             return acos.AXAPI_30
-        elif re.match(r'[vV][a-z-_]*2\.1$', str(api_version)):
+        elif re.match(r'[vV]?[a-z-_]*2\.1$', str(api_version)):
             return acos.AXAPI_21
         else:
             self.logger.warning("This uses default API version(%s), instead of specified one(%s)" %

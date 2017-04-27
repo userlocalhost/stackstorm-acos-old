@@ -4,3 +4,4 @@
 # means swap/backup files that editor makes
 *.sw*
 *~
+*.pyc
