@@ -1,4 +1,3 @@
-import acos_client
 import mock
 
 from acos_base_action_test_case import ACOSBaseActionTestCase
