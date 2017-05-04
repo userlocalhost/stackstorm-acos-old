@@ -1,7 +1,8 @@
 ---
-name: del_slb_service_group
+name: del_slb_virtual_server
+pack: acos
 runner_type: run-python
-description: remove a ServiceGroup from SLB
+description: remove a VirutlServer from SLB 
 enabled: true
 entry_point: ax_action_runner.py
 parameters:
@@ -10,7 +11,7 @@ parameters:
         type: string
         immutable: true
     object_path:
-        default: slb.service_group
+        default: slb.virtual_server
         type: string
         immutable: true
     api_version:
@@ -23,5 +24,5 @@ parameters:
         default: v3.0
     name:
         type: string
-        description: name of ServiceGroup to remove
+        description: name of VirtualServer to remove
         required: true
