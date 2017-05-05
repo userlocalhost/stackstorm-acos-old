@@ -1,5 +1,6 @@
 import acos_client as acos
 import re
+import logging
 
 from st2actions.runners.pythonrunner import Action
 
@@ -10,6 +11,8 @@ class BaseAction(Action):
 
     def __init__(self, config):
         super(BaseAction, self).__init__(config)
+
+        self._set_loglevel(logging.INFO)
 
         self.config = config
 
@@ -30,6 +33,11 @@ class BaseAction(Action):
             obj = getattr(obj, path)
 
         return obj
+
+    def _set_loglevel(self, level):
+        for key, logger in logging.Logger.manager.loggerDict.items():
+            if isinstance(logger, logging.Logger):
+                logger.setLevel(level)
 
     def _get_axapi_version(self, api_version):
         if re.match(r'[vV]?[a-z-_]*3\.0$', str(api_version)):
